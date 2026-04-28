@@ -18,27 +18,3 @@ GROUP BY
     line_item_usage_type
 ORDER BY
     total_cost DESC;
-
-
-
-
-SELECT
-    "line_item/ResourceId",
-    "product/database_engine",
-    "product/engine_version",
-    "product/vcpu",
-    "line_item/UsageType",
-    SUM("line_item/UnblendedCost") AS total_cost
-FROM
-    aws_cost_and_usage
-WHERE
-    "line_item/UsageType" LIKE '%ExtendedSupport%'
-    AND "line_item/LineItemType" = 'Usage'
-GROUP BY
-    "line_item/ResourceId",
-    "product/database_engine",
-    "product/engine_version",
-    "product/vcpu",
-    "line_item/UsageType"
-ORDER BY
-    total_cost DESC;
